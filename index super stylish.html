@@ -879,7 +879,7 @@
     }
     .test-nav a.active { font-weight: 600; }
     .nav-wrap { top: 32px !important; }
-    .nav-links a[data-hidden] { display: none; }
+    .nav-links a[disabled] { cursor: default; opacity: 0.4; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -898,9 +898,9 @@
         <span class="logo-sub">Brows · PMU · Luxury Beauty</span>
       </a>
       <nav class="nav-links">
-        <a href="#" data-hidden>Studio</a>
-        <a href="#" data-hidden>Treatments</a>
-        <a href="#" data-hidden>Service</a>
+        <a href="#" disabled>Studio</a>
+        <a href="#" disabled>Treatments</a>
+        <a href="#" disabled>Service</a>
         <a class="btn-nav" href="#boek">Boek afspraak</a>
       </nav>
     </div>

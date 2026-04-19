@@ -28,7 +28,7 @@
     }
     .test-nav a.active { color: white; font-weight: 600; }
     header { top: 32px !important; }
-    nav a[data-hidden] { display: none; }
+    nav a[disabled] { cursor: default; opacity: 0.5; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -46,11 +46,11 @@
       <button class="menu-toggle" id="menuToggle">☰</button>
       <nav id="navMenu">
         <a href="index.html" class="active">Home</a>
-        <a href="#" data-hidden>Over Mij</a>
-        <a href="#" data-hidden>Diensten</a>
-        <a href="#" data-hidden>Portfolio</a>
-        <a href="#" data-hidden>Reviews</a>
-        <a href="#" data-hidden>Contact</a>
+        <a href="#" disabled>Over Mij</a>
+        <a href="#" disabled>Diensten</a>
+        <a href="#" disabled>Portfolio</a>
+        <a href="#" disabled>Reviews</a>
+        <a href="#" disabled>Contact</a>
       </nav>
     </div>
   </header>

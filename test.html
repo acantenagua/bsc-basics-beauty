@@ -131,7 +131,7 @@
     nav a:hover { color: var(--dark); }
     nav a:hover::after { width: 100%; }
 
-    nav a[data-hidden] { display: none; }
+    nav a[disabled] { cursor: default; opacity: 0.5; pointer-events: none; }
 
     /* ── HERO ── */
     .hero {
@@ -341,17 +341,17 @@
   <header>
     <nav class="nav-left">
       <a href="#">Home</a>
-      <a href="#" data-hidden>Over Mij</a>
-      <a href="#" data-hidden>Diensten</a>
+      <a href="#" disabled>Over Mij</a>
+      <a href="#" disabled>Diensten</a>
     </nav>
     <div class="nav-center">
       <span class="brand-name">Basics</span>
       <span class="brand-sub">— Beauty & Brows —</span>
     </div>
     <nav class="nav-right">
-      <a href="#" data-hidden>Portfolio</a>
-      <a href="#" data-hidden>Reviews</a>
-      <a href="#" data-hidden>Contact</a>
+      <a href="#" disabled>Portfolio</a>
+      <a href="#" disabled>Reviews</a>
+      <a href="#" disabled>Contact</a>
     </nav>
   </header>
 
