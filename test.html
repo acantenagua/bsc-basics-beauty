@@ -48,9 +48,10 @@
       margin: 0 1.5rem;
       text-decoration: none;
       transition: color 0.2s;
+      font-weight: 400;
     }
 
-    .test-nav a:hover { color: var(--white); }
+    .test-nav a:hover:not(.active) { color: var(--white); opacity: 0.8; }
     .test-nav a.active { color: var(--white); font-weight: 600; }
 
     /* ── NAV: SPLIT ── */
@@ -131,7 +132,8 @@
     nav a:hover { color: var(--dark); }
     nav a:hover::after { width: 100%; }
 
-    nav a[disabled] { cursor: default; opacity: 0.5; pointer-events: none; }
+    nav a[disabled] { cursor: default; color: #ccc !important; pointer-events: none; }
+    nav a[disabled]::after { display: none; }
 
     /* ── HERO ── */
     .hero {
