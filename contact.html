@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact — Neem contact op en plan je afspraak in">
+  <title>Contact — BSC Basics Beauty</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-text">
+        <div>Basics</div>
+        <div class="logo-subtitle">- Beauty and Brows -</div>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <nav id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="over-mij.html">Over Mij</a>
+        <a href="diensten.html">Diensten</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="text-center mb">Neem Contact Op</h1>
+      <p class="text-center" style="max-width: 600px; margin: 0 auto var(--spacing-xl); font-size: 1.1rem;">
+        We bespreken wat voor jou het best past. Geen vaste antwoorden, alleen jouw perfecte behandeling.
+      </p>
+
+      <div class="grid grid-2" style="margin: var(--spacing-xl) 0;">
+        <!-- CONTACT INFO -->
+        <div>
+          <h2>Contactgegevens</h2>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <p style="font-weight: 600; margin-bottom: var(--spacing-sm);">📱 Telefoon</p>
+            <a href="tel:062920043" style="font-size: 1.1rem;">06 2920043</a>
+          </div>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <p style="font-weight: 600; margin-bottom: var(--spacing-sm);">💬 WhatsApp</p>
+            <a href="https://wa.me/31629200430" target="_blank" style="font-size: 1.1rem;">Message on WhatsApp</a>
+          </div>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <p style="font-weight: 600; margin-bottom: var(--spacing-sm);">📧 Email</p>
+            <a href="mailto:info@basicisandbrows.nl" style="font-size: 1.1rem;">info@basicisandbrows.nl</a>
+          </div>
+
+          <h3 style="margin-top: var(--spacing-xl);">📍 Locatie</h3>
+          <p>Veldmaarschalk Montgomeryweg 23C<br>3768 AE Soesterberg</p>
+          <p style="color: var(--accent); font-weight: 600;">🆓 Gratis parkeren</p>
+
+          <h3 style="margin-top: var(--spacing-xl);">⏰ Openingstijden</h3>
+          <p>Op afspraak</p>
+
+          <!-- GOOGLE MAPS -->
+          <div style="margin-top: var(--spacing-xl); border-radius: 8px; overflow: hidden; height: 300px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2463.8476483826384!2d5.285!3d52.065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5d2a1234e5e91%3A0x1234567890abcdef!2sVeldmaarschalk%20Montgomeryweg%2023C%2C%20Soesterberg!5e0!3m2!1snl!2snl!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM / BOOKING -->
+        <div>
+          <h2>Direct Boeken</h2>
+
+          <div style="background: var(--gray); padding: var(--spacing-lg); border-radius: 8px; margin-bottom: var(--spacing-lg);">
+            <p style="margin-bottom: var(--spacing-md); font-weight: 600;">📅 Via Treatwell</p>
+            <p style="margin-bottom: var(--spacing-md);">
+              Direct boeken en je afspraak confirmatie ontvangen.
+            </p>
+            <a href="https://www.treatwell.nl" target="_blank" class="btn" style="width: 100%; text-align: center;">
+              Boek op Treatwell
+            </a>
+          </div>
+
+          <p style="text-align: center; margin-bottom: var(--spacing-lg);">— of —</p>
+
+          <h3>Contactformulier</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Jouw naam *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefoon</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="treatment">Welke behandeling interesseert je?</label>
+              <input type="text" id="treatment" name="treatment" placeholder="bijv. Henna Brows">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Bericht *</label>
+              <textarea id="message" name="message" required placeholder="Vertel ons wat je verwacht..."></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Verstuur</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 BSC Basics Beauty. Alle rechten voorbehouden.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

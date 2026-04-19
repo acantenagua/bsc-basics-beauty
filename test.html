@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSC Basics Beauty — Test</title>
+  <style>
+    :root {
+      --primary: #F5E6D3;
+      --dark: #3D2817;
+      --text-light: #6B5A4D;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 8px rgba(61, 40, 23, 0.08);
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--dark); }
+
+    /* LOGO CENTER */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-wrap img {
+      width: min(2100px, 95vw);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">BSC Basics Beauty</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Over Mij</a>
+      <a href="#">Diensten</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Reviews</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="logo-wrap">
+      <img src="assets/logo/logo.png" alt="BSC Basics Beauty">
+    </div>
+  </main>
+
+</body>
+</html>

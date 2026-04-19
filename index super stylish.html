@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basics Beauty — Signature Brows & Luxury Beauty</title>
+  <meta name="description" content="Basics Beauty — High-end brow artistry, PMU en luxury beauty treatments in een private studio-omgeving.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #18140f;
+      --surface:   #211c16;
+      --card:      #2a241c;
+      --border:    rgba(255,243,228,0.12);
+      --text:      #fdf8f2;
+      --muted:     #c4b8aa;
+      --faint:     #7a6e62;
+      --gold:      #d4a96a;
+      --gold-lt:   #e8c88e;
+      --gold-dim:  rgba(212,169,106,0.15);
+      --gold-glow: rgba(212,169,106,0.08);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --max:       1200px;
+      --ease:      cubic-bezier(.22,.84,.36,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── subtle grain overlay ── */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .shell {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ─────────── NAV ─────────── */
+    .nav-wrap {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 0;
+      transition: padding 400ms var(--ease), background 400ms var(--ease);
+    }
+    .nav-wrap.scrolled {
+      padding: 16px 0;
+      background: rgba(12,10,8,0.88);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 3px;
+    }
+    .logo-main {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 1.55rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+    .logo-sub {
+      font-size: 0.62rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.65;
+      transition: color 220ms, opacity 220ms;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .btn-nav {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bg) !important;
+      background: var(--gold);
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: background 220ms, transform 220ms;
+    }
+    .btn-nav:hover {
+      background: var(--gold-lt);
+      transform: translateY(-1px);
+    }
+
+    /* ─────────── HERO ─────────── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Full background — warmer on the right for depth */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 78% 38%, rgba(160,110,55,0.22), transparent 48%),
+        radial-gradient(ellipse at 62% 70%, rgba(120,80,35,0.12), transparent 38%),
+        linear-gradient(105deg, #18140f 0%, #18140f 38%, #221a12 62%, #2c2016 100%);
+    }
+
+    /* Subtle golden-ratio vertical division line */
+    .hero-divider {
+      position: absolute;
+      top: 12%;
+      bottom: 12%;
+      left: 61.8%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(212,169,106,0.15) 30%, rgba(212,169,106,0.15) 70%, transparent);
+      z-index: 1;
+    }
+
+    /* Inner grid — full-width, geen shell-centering hier */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 61.8fr 38.2fr;
+      align-items: stretch;
+      min-height: 100svh;
+      width: 100%;
+    }
+
+    /* Left: copy — padded vanaf viewport-rand */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: clamp(120px, 20vh, 180px) 60px 80px max(40px, 7vw);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: clamp(3.6rem, 5.8vw, 7.2rem);
+      line-height: 0.94;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+    .hero-lead {
+      margin-top: 32px;
+      max-width: 42ch;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 40px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: transform 220ms var(--ease), box-shadow 220ms, background 220ms;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      box-shadow: 0 12px 40px rgba(212,169,106,0.28);
+    }
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      box-shadow: 0 18px 50px rgba(212,169,106,0.38);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,243,228,0.25);
+    }
+    .btn-outline:hover { border-color: rgba(255,243,228,0.45); }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .stat strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: 2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat span {
+      font-size: 0.67rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* Right: arch + badge — the 38.2% visual column */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      align-self: start;
+      height: 82svh;
+      max-height: 820px;
+    }
+    .hero-right-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .hero-right-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to left, rgba(24,20,15,0.18) 0%, rgba(24,20,15,0.72) 100%),
+        linear-gradient(to bottom, rgba(24,20,15,0.2) 0%, rgba(24,20,15,0.55) 100%);
+    }
+
+    /* Arch + badge above the image overlay */
+    .hero-arc {
+      position: absolute;
+      width: 64%;
+      aspect-ratio: 0.78;
+      border: 1px solid rgba(212,169,106,0.28);
+      border-radius: 50% 50% 0 0 / 52% 52% 0 0;
+      bottom: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .hero-arc::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: inherit;
+      border: 1px solid rgba(212,169,106,0.10);
+    }
+    .hero-arc::after {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border-radius: inherit;
+      border: 1px solid rgba(212,169,106,0.06);
+    }
+
+    /* Badge — absoluut verankerd onderaan rechterkolom */
+    .hero-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 32px;
+      right: 24px;
+      z-index: 2;
+      padding: 24px 28px;
+      background: rgba(24,20,15,0.78);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .hero-badge-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .hero-badge p {
+      font-size: 0.88rem;
+      line-height: 1.78;
+      color: rgba(253,248,242,0.65);
+      font-weight: 300;
+    }
+
+    /* ─────────── MARQUEE STRIP ─────────── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      padding: 0 32px;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.55;
+    }
+    .marquee-item::before {
+      content: "✦";
+      color: var(--gold);
+      font-size: 0.5rem;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─────────── SECTION BASE ─────────── */
+    section { padding: 120px 0; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.64rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.55;
+    }
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 4.5vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      max-width: 12ch;
+    }
+    .section-title em { font-style: italic; color: var(--gold-lt); }
+    .section-body {
+      font-size: 0.93rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 52ch;
+      font-weight: 300;
+    }
+
+    /* ─────────── ABOUT / STORY ─────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image {
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .about-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(24,20,15,0.65) 100%);
+      pointer-events: none;
+    }
+    .about-image-label {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      right: 28px;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(240,229,216,0.5);
+    }
+    .about-accent {
+      position: absolute;
+      top: -24px;
+      right: -24px;
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba(200,160,98,0.15);
+      border-radius: 50%;
+    }
+    .about-content { display: flex; flex-direction: column; gap: 28px; }
+    .about-content .section-title { max-width: 14ch; }
+    .pull-quote {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.75rem;
+      line-height: 1.4;
+      color: rgba(240,229,216,0.6);
+      border-left: 1px solid var(--gold);
+      padding-left: 24px;
+      font-weight: 300;
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .feature-list li strong {
+      color: var(--text);
+      font-weight: 400;
+      min-width: 150px;
+      flex-shrink: 0;
+    }
+    .feature-list li:first-child { border-top: 1px solid var(--border); }
+
+    /* ─────────── SERVICES ─────────── */
+    .services-section { background: var(--surface); }
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 72px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .service-item {
+      background: var(--card);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 300ms;
+    }
+    .service-item:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+    .service-item:last-child  { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+    .service-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold-dim), transparent 60%);
+      opacity: 0;
+      transition: opacity 400ms;
+    }
+    .service-item:hover::before { opacity: 1; }
+    .service-item:hover { background: #201c18; }
+    .service-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .service-item h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .service-item p {
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 8px 16px;
+      border: 1px solid rgba(200,160,98,0.22);
+      border-radius: 999px;
+    }
+
+    /* ─────────── RITUAL ─────────── */
+    .ritual-header { text-align: center; margin-bottom: 80px; }
+    .ritual-header .section-label { justify-content: center; }
+    .ritual-header .section-label::before { display: none; }
+    .ritual-header .section-label::after {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.55;
+    }
+    .ritual-header .section-title {
+      margin: 0 auto;
+      text-align: center;
+    }
+    .ritual-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .ritual-step {
+      background: var(--bg);
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .ritual-step:hover { background: var(--surface); }
+    .ritual-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 4rem;
+      line-height: 1;
+      font-weight: 300;
+      color: rgba(200,160,98,0.15);
+    }
+    .ritual-step h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: var(--text);
+    }
+    .ritual-step p {
+      font-size: 0.87rem;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ─────────── TESTIMONIALS ─────────── */
+    .testimonials-section { background: var(--surface); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .testimonial {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .testimonial-quote {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 300;
+      color: var(--text);
+      flex: 1;
+    }
+    .testimonial-quote::before {
+      content: "\201C";
+      display: block;
+      font-size: 3rem;
+      line-height: 0.8;
+      margin-bottom: 14px;
+      color: var(--gold);
+      opacity: 0.5;
+    }
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(30%);
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-author strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+    .testimonial-author span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ─────────── FULL-WIDTH STRIP ─────────── */
+    .strip {
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .strip-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .strip-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: brightness(0.88);
+    }
+    .strip-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(24,20,15,0.92) 25%, rgba(24,20,15,0.35) 65%, rgba(24,20,15,0.2) 100%);
+      z-index: 1;
+    }
+    .strip-content {
+      position: relative;
+      z-index: 2;
+      max-width: 580px;
+    }
+    .strip-content .section-title { max-width: none; }
+    .strip-content p {
+      font-size: 0.93rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin: 24px 0 40px;
+    }
+
+    /* ─────────── BOOKING / CTA ─────────── */
+    .booking-section { background: var(--bg); }
+    .booking-wrap {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+    .booking-left {
+      padding: 72px 64px;
+      background: var(--surface);
+    }
+    .booking-left .section-title { margin-top: 16px; }
+    .booking-left p {
+      margin: 24px 0 40px;
+      font-size: 0.93rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 46ch;
+    }
+    .booking-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .booking-right {
+      background: var(--card);
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .info-row:first-child { border-top: 1px solid var(--border); }
+    .info-row strong {
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .info-row span { color: var(--text); font-weight: 300; }
+
+    /* ─────────── FOOTER ─────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+    .footer-copy {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--faint);
+    }
+
+    /* ─────────── ANIMATIONS ─────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
+
+    /* ─────────── RESPONSIVE ─────────── */
+    @media (max-width: 1080px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-left { padding: 160px 0 60px; }
+      .hero-right { min-height: 360px; }
+      .hero-divider { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-image { aspect-ratio: 4/3; }
+      .services-grid { grid-template-columns: 1fr; gap: 2px; }
+      .service-item:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+      .service-item:last-child  { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+      .ritual-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .booking-wrap { grid-template-columns: 1fr; }
+      .booking-left { padding: 48px 36px; }
+      .booking-right { padding: 36px; }
+    }
+
+    @media (max-width: 680px) {
+      section { padding: 80px 0; }
+      .shell { width: calc(100% - 32px); }
+      .nav-links { gap: 20px; }
+      .nav-links a:not(.btn-nav) { display: none; }
+      .hero-left { padding-top: 120px; }
+      .hero h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .ritual-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav-wrap" id="nav">
+    <div class="shell nav-inner">
+      <a class="logo" href="#top">
+        <span class="logo-main">Basics Beauty</span>
+        <span class="logo-sub">Brows · PMU · Luxury Beauty</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#over">Studio</a>
+        <a href="#treatments">Treatments</a>
+        <a href="#ritual">Service</a>
+        <a class="btn-nav" href="#boek">Boek afspraak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-divider" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-left fade-up">
+        <div class="hero-eyebrow">Private Beauty Studio</div>
+        <h1>Where <em>art</em><br>meets beauty.</h1>
+        <p class="hero-lead">
+          Basics Beauty is een high-end brow en beauty studio voor clients die meer verwachten.
+          Vakmanschap, zachte luxe en een verzorgde service-ervaring van begin tot eind.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#boek">Reserveer jouw moment</a>
+          <a class="btn btn-outline" href="#treatments">Ontdek treatments</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>Brows</strong>
+            <span>Signature artistry</span>
+          </div>
+          <div class="stat">
+            <strong>PMU</strong>
+            <span>Refined permanence</span>
+          </div>
+          <div class="stat">
+            <strong>Beauty</strong>
+            <span>Full luxury service</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <img class="hero-right-img" src="assets/image/nr3.png" alt="Beauty portret">
+        <div class="hero-right-overlay" aria-hidden="true"></div>
+        <div class="hero-arc" aria-hidden="true"></div>
+        <div class="hero-badge fade-up delay-300">
+          <div class="hero-badge-label">Private Beauty Experience</div>
+          <p>
+            Elke behandeling is een combinatie van precisie-artistry, zachte sfeer
+            en persoonlijke service die ver voorbij het standaard salonbezoek gaat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Signature Brows</span>
+      <span class="marquee-item">Brow Lamination</span>
+      <span class="marquee-item">Luxury PMU</span>
+      <span class="marquee-item">Lash Lift</span>
+      <span class="marquee-item">Brow Mapping</span>
+      <span class="marquee-item">Soft Powder Brows</span>
+      <span class="marquee-item">Nano Effect</span>
+      <span class="marquee-item">High-End Service</span>
+      <span class="marquee-item">Private Studio</span>
+      <span class="marquee-item">Signature Brows</span>
+      <span class="marquee-item">Brow Lamination</span>
+      <span class="marquee-item">Luxury PMU</span>
+      <span class="marquee-item">Lash Lift</span>
+      <span class="marquee-item">Brow Mapping</span>
+      <span class="marquee-item">Soft Powder Brows</span>
+      <span class="marquee-item">Nano Effect</span>
+      <span class="marquee-item">High-End Service</span>
+      <span class="marquee-item">Private Studio</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="over">
+      <div class="shell about-grid">
+        <div class="about-image-wrap fade-up">
+          <div class="about-image">
+            <img src="assets/image/nr4.png" alt="Beauty studio portret">
+          </div>
+          <div class="about-image-label">Studio · Amsterdam</div>
+          <div class="about-accent" aria-hidden="true"></div>
+        </div>
+        <div class="about-content">
+          <div class="fade-up">
+            <div class="section-label">Refined Beauty Artistry</div>
+            <h2 class="section-title">Geen gewone salon. Een <em>destination</em>.</h2>
+          </div>
+          <p class="section-body fade-up delay-100">
+            Basics Beauty is ontworpen voor clients die meer verwachten dan een standaard salonbezoek.
+            Brows zijn onze signatuur, maar alles eromheen — de sfeer, de intake, de aftercare —
+            is gebouwd op een fundament van echte high value.
+          </p>
+          <div class="pull-quote fade-up delay-200">
+            "High value beauty draait om techniek, rust en service die je direct voelt."
+          </div>
+          <ul class="feature-list fade-up delay-300">
+            <li>
+              <strong>Brow expertise</strong>
+              <span>Signature shaping, tinting, lamination en brow mapping op maat</span>
+            </li>
+            <li>
+              <strong>PMU met precisie</strong>
+              <span>Soft powder, nano-effect en verfijnde correcties</span>
+            </li>
+            <li>
+              <strong>Luxury serviceflow</strong>
+              <span>Persoonlijke intake, heldere guidance en premium nazorg</span>
+            </li>
+            <li>
+              <strong>Beauty house</strong>
+              <span>Brows, lashes en finishing treatments in één elegante setting</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="treatments" class="services-section">
+      <div class="shell">
+        <div class="services-header">
+          <div class="fade-up">
+            <div class="section-label">Treatments</div>
+            <h2 class="section-title">De treatments die<br><em>luxe definiëren.</em></h2>
+          </div>
+          <p class="section-body fade-up delay-200">
+            Elk treatment is ontworpen om maximaal resultaat te leveren met een servicelevel dat de prijs direct rechtvaardigt.
+          </p>
+        </div>
+        <div class="services-grid">
+          <article class="service-item fade-up delay-100">
+            <div class="service-num">01 — Brow Bar</div>
+            <h3>Signature<br>Brows</h3>
+            <p>
+              Brow shaping, hybrid dye, lamination en design volledig op maat.
+              Elke behandeling begint met een grondige analyse van gezichtsharmonie en browvorm.
+            </p>
+            <div class="service-tag">Voor de perfecte eerste indruk</div>
+          </article>
+          <article class="service-item fade-up delay-200">
+            <div class="service-num">02 — PMU Atelier</div>
+            <h3>Luxury<br>PMU</h3>
+            <p>
+              Verfijnde permanente make-up voor brows met soft powder en nano-technieken.
+              Ontworpen met natuurlijke balans, elegante definitie en langdurig resultaat.
+            </p>
+            <div class="service-tag">Gemaakt om te blijven</div>
+          </article>
+          <article class="service-item fade-up delay-300">
+            <div class="service-num">03 — Beauty Lounge</div>
+            <h3>Lashes &amp;<br>Finishing</h3>
+            <p>
+              Lash lift, soft beauty treatments en finishing services die de blik openen
+              en de totale look compleet maken met salon-level hospitality.
+            </p>
+            <div class="service-tag">Complete beauty experience</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RITUAL -->
+    <section id="ritual">
+      <div class="shell">
+        <div class="ritual-header fade-up">
+          <div class="section-label">Service Ritual</div>
+          <h2 class="section-title">High service in<br><em>vier stappen.</em></h2>
+        </div>
+        <div class="ritual-grid">
+          <article class="ritual-step fade-up delay-100">
+            <div class="ritual-num">01</div>
+            <h3>Welcome</h3>
+            <p>Vanaf het eerste contact voelt Basics Beauty persoonlijk, rustig en volledig afgestemd op jouw wensen en agenda.</p>
+          </article>
+          <article class="ritual-step fade-up delay-200">
+            <div class="ritual-num">02</div>
+            <h3>Analyse</h3>
+            <p>We kijken naar gezichtsharmonie, browvorm, huid en het exacte niveau van definitie dat bij jou past.</p>
+          </article>
+          <article class="ritual-step fade-up delay-300">
+            <div class="ritual-num">03</div>
+            <h3>Treatment</h3>
+            <p>De behandeling wordt uitgevoerd met precisie, zachte luxe en veel aandacht voor comfort, detail en afwerking.</p>
+          </article>
+          <article class="ritual-step fade-up delay-400">
+            <div class="ritual-num">04</div>
+            <h3>Aftercare</h3>
+            <p>Je vertrekt met een heldere nazorgflow, touch-up guidance en het gevoel dat alles zorgvuldig bewaakt is.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRIP / BRAND STATEMENT -->
+    <div class="strip">
+      <div class="strip-bg" aria-hidden="true">
+        <img src="assets/image/Scherm­afbeelding%202026-03-25%20om%2012.27.34.png" alt="">
+      </div>
+      <div class="shell">
+        <div class="strip-content fade-up">
+          <div class="section-label">Beauty Philosophy</div>
+          <h2 class="section-title">Minder ruis.<br>Meer <em>presence.</em></h2>
+          <p>
+            Basics Beauty is niet voor iedereen — en dat is precies de kracht.
+            Voor clients die een rustige, verzorgde en vakkundige ervaring willen
+            waarin alles draait om uitstraling, comfort en high value.
+          </p>
+          <a class="btn btn-primary" href="#boek">Reserveer jouw plek</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="shell">
+        <div class="fade-up">
+          <div class="section-label">Client Ervaringen</div>
+          <h2 class="section-title">Wat clients<br>écht <em>voelen.</em></h2>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial fade-up delay-100">
+            <div class="testimonial-quote">
+              De brows zijn prachtig, maar vooral de hele ervaring voelde exclusief en heel verzorgd.
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="assets/image/Scherm­afbeelding%202026-03-25%20om%2012.27.57.png" alt="Isabelle M.">
+              </div>
+              <div>
+                <strong>Isabelle M.</strong>
+                <span>Signature Brow Client</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial fade-up delay-200">
+            <div class="testimonial-quote">
+              Basics Beauty voelt high-end en high value. Je merkt aan alles dat service hier serieus wordt genomen.
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="assets/image/Scherm­afbeelding%202026-03-25%20om%2012.27.47.png" alt="Nora V.">
+              </div>
+              <div>
+                <strong>Nora V.</strong>
+                <span>Returning PMU Client</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial fade-up delay-300">
+            <div class="testimonial-quote">
+              Ik kwam voor mijn brows en bleef terugkomen voor de totaalervaring. Chic, rustig en super professioneel.
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="assets/image/Scherm­afbeelding%202026-03-25%20om%2012.27.34.png" alt="Camille D.">
+              </div>
+              <div>
+                <strong>Camille D.</strong>
+                <span>Luxury Beauty Client</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="boek" class="booking-section">
+      <div class="shell">
+        <div class="booking-wrap fade-up">
+          <div class="booking-left">
+            <div class="section-label">Reserve Your Moment</div>
+            <h2 class="section-title">Boek jouw <em>Basics</em><br>experience.</h2>
+            <p>
+              Beschikbaarheid is gelimiteerd. Basics Beauty werkt uitsluitend op afspraak
+              voor een privacy-first en rustige studio-ervaring.
+            </p>
+            <div class="booking-actions">
+              <a class="btn btn-primary" href="mailto:hello@basicsbeauty.nl">Boek via e-mail</a>
+              <a class="btn btn-outline" href="tel:+310612345678">Bel voor beschikbaarheid</a>
+            </div>
+          </div>
+          <div class="booking-right">
+            <div class="info-row">
+              <strong>Studio</strong>
+              <span>Basics Beauty</span>
+            </div>
+            <div class="info-row">
+              <strong>Locatie</strong>
+              <span>Nederland · op afspraak</span>
+            </div>
+            <div class="info-row">
+              <strong>Consultatie</strong>
+              <span>Private appointments only</span>
+            </div>
+            <div class="info-row">
+              <strong>Contact</strong>
+              <span>hello@basicsbeauty.nl</span>
+            </div>
+            <div class="info-row">
+              <strong>Beschikbaarheid</strong>
+              <span>Beperkte plaatsen per week</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">Basics Beauty</div>
+      <div class="footer-copy">© 2025 Basics Beauty · Brows · PMU · Luxury Beauty</div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
