@@ -192,7 +192,7 @@ header {
 }
 
 .logo-image {
-  width: min(900px, 90vw);
+  width: min(1400px, 95vw);
   margin: 0 auto;
 }
 
