@@ -856,9 +856,39 @@
       .hero-stats { gap: 24px; flex-wrap: wrap; }
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
+    /* TEST NAV */
+    .test-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 101;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.5rem 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .test-nav a {
+      color: var(--bg);
+      margin: 0 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .test-nav a.active { font-weight: 600; }
+    .nav-wrap { top: 32px !important; }
+    .nav-links a[data-hidden] { display: none; }
   </style>
 </head>
 <body>
+
+  <div class="test-nav">
+    <a href="index.html">Test 1</a>
+    <a href="index super stylish.html" class="active">Test 2</a>
+    <a href="test.html">Test 3</a>
+  </div>
 
   <!-- NAV -->
   <header class="nav-wrap" id="nav">
@@ -868,9 +898,9 @@
         <span class="logo-sub">Brows · PMU · Luxury Beauty</span>
       </a>
       <nav class="nav-links">
-        <a href="#over">Studio</a>
-        <a href="#treatments">Treatments</a>
-        <a href="#ritual">Service</a>
+        <a href="#" data-hidden>Studio</a>
+        <a href="#" data-hidden>Treatments</a>
+        <a href="#" data-hidden>Service</a>
         <a class="btn-nav" href="#boek">Boek afspraak</a>
       </nav>
     </div>

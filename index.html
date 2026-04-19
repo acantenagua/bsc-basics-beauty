@@ -6,8 +6,37 @@
   <meta name="description" content="BSC Basics Beauty — Professional beauty treatments with expert care, warmth, and that extra touch.">
   <title>BSC Basics Beauty — Beauty Treatments & Skincare</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .test-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 101;
+      background: #3D2817;
+      color: white;
+      padding: 0.5rem 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .test-nav a {
+      color: #E8A0A0;
+      margin: 0 1.5rem;
+      text-decoration: none;
+    }
+    .test-nav a.active { color: white; font-weight: 600; }
+    header { top: 32px !important; }
+    nav a[data-hidden] { display: none; }
+  </style>
 </head>
 <body>
+  <div class="test-nav">
+    <a href="index.html" class="active">Test 1</a>
+    <a href="index super stylish.html">Test 2</a>
+    <a href="test.html">Test 3</a>
+  </div>
   <header>
     <div class="header-container">
       <div class="logo-text">
@@ -17,11 +46,11 @@
       <button class="menu-toggle" id="menuToggle">☰</button>
       <nav id="navMenu">
         <a href="index.html" class="active">Home</a>
-        <a href="over-mij.html">Over Mij</a>
-        <a href="diensten.html">Diensten</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="contact.html">Contact</a>
+        <a href="#" data-hidden>Over Mij</a>
+        <a href="#" data-hidden>Diensten</a>
+        <a href="#" data-hidden>Portfolio</a>
+        <a href="#" data-hidden>Reviews</a>
+        <a href="#" data-hidden>Contact</a>
       </nav>
     </div>
   </header>
