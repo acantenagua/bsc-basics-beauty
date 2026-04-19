@@ -275,9 +275,10 @@ nav a.active::after {
   min-height: 100vh;
   background: var(--primary);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
+  padding-top: 4vh;
 }
 
 .hero-content {
